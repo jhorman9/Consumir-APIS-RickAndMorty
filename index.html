@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <ul id="getApis">
+    </ul>
+</body>
+    <script>
+        let inf = document.getElementById("getApis");
+        let apis = async() =>{ 
+        
+
+        let response = await axios({
+        method: "get",
+        url: "https://rickandmortyapi.com/api/character/?page=2"
+
+        });
+
+     //let character = response.data.results[0].name;
+    
+    let characters = response.data.results;
+    
+    for (let character of characters){
+        inf.innerHTML += `<li><span>${character.name}</span><img src="${character.image}"/><span><b>Species: </b>${character.species}<span><b>Gender: </b>${character.gender}</span></span> </li>`
+    }
+    }
+
+    apis();
+    
+      </script>
+
+</html>
